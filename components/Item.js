@@ -27,10 +27,14 @@ Item.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    height: 100,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    borderColor: '#fff',
+    borderWidth: 0.25
   }
 });
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, ListView } from "react-native";
+import { StyleSheet, ListView, FlatList } from "react-native";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Item from "./Item";
@@ -16,43 +16,48 @@ class ItemList extends Component {
 
   render() {
     return (
-      <ListView
+      <FlatList
+        contentContainerStyle={styles.hList}
         style={styles.container}
-        enableEmptySections={true}
-        dataSource={this.props.dataSource}
-        renderRow={rowData => {
-          return (
+        data={this.props.dataSource}
+        keyExtractor={(item, index) => index}
+        renderItem={
+          (rowData) => 
+          (
             <Item
-              rowData={rowData}
+              rowData={rowData.item}
               handleDestroyItem={id => this.handleDestroyItem(id)}
             />
-          );
-        }}
+          )
+        }
       />
+      
     );
   }
 }
 
-// Handle data source change from redux store
-
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2
-});
-
 function mapStateToProps(state) {
   return {
-    dataSource: dataSource.cloneWithRows(state.items)
+    dataSource: state.items
   };
 }
 
 ItemList.propTypes = {
-  dataSource: PropTypes.object,
+  dataSource: PropTypes.array,
   dispatch: PropTypes.func
 };
 
 const styles = StyleSheet.create({
+  hList: {
+    flex: 2,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
   container: {
-    backgroundColor: "#efefef"
+    backgroundColor: "#efefef",
+    flexWrap: 'wrap',
+    flexDirection: 'column',
   }
 });
 

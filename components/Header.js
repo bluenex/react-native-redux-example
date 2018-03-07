@@ -35,13 +35,9 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={styles.left} />
-          <View style={styles.middle}>
-            <TouchableOpacity onPress={() => this.handleCreateItem()}>
-              <Text style={styles.textRight}>ADD ITEM</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.right} />
+          <TouchableOpacity onPress={() => this.handleCreateItem()}>
+            <Text style={styles.textRight}>ADD ITEM</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -60,8 +56,8 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   textRight: {
     color: "#efefef",
