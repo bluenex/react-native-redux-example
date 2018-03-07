@@ -18,6 +18,7 @@ class ItemList extends Component {
     return (
       <ListView
         style={styles.container}
+        contentContainerStyle={styles.hList}
         enableEmptySections={true}
         dataSource={this.props.dataSource}
         renderRow={rowData => {
@@ -51,6 +52,11 @@ ItemList.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  hList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
   container: {
     backgroundColor: "#efefef"
   }
